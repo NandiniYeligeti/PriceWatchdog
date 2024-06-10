@@ -1,0 +1,77 @@
+{% extends 'store.html' %}
+{% load static %}
+{% block content %}
+<!-- Example button to trigger redirect to compare2 page -->
+
+<div class="container justify-content-center">
+    <div class="row">
+        <form id="search-form1" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+        <div class="col-md-8">
+           <div class="input-group mb-3">
+           
+  <input type="text" class="form-control input-text" placeholder="Search products...." name="query1"   aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-warning btn-lg" type="submit"><i class="fa fa-search"></i>search</button>
+    <div id="search-results1"></div>
+</form>
+</div>
+</div>
+       </div>        
+    </div>
+</div>
+    
+
+
+
+   
+
+<button id="compareButton">Compare Products</button>
+
+<hr>
+{% if products %}
+    {% for product1 in products %}
+<div class="card dark">
+    
+    <img src="{{ product1.imglink }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <div class="text-section">
+            <h5 class="card-title fw-bold">{{ product1.name }}</h5>
+             </div>
+        <div class="cta-section">
+            <div>{{ product1.price }}</div>
+            <a href="#" class="btn btn-light" onclick="addToComparison('{{ product1.id }}')">Add to Comparison</a>
+        </div>
+    </div>
+    
+</div>
+{% endfor %}
+    {% endif %}
+
+
+
+
+
+    {% if products2 %}
+    {% for product2 in products2 %}
+    <div>
+        <!-- Other product details -->
+        <button onclick="addToComparison('{{ product2.id }}')">Add to Comparison</button>
+
+
+        <h6>{{product2.name}}</h6>
+
+    </div>
+    {% endfor %}
+
+    <!--    {% else %}-->
+    <!--    <h5>No search results</h5>-->
+    {% endif %}
+
+</div>
+
+<script src="{% static 'display.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}"> <!-- Link to your CSS file -->
+{% endblock %}
+
+

@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <!--[1][1]-->
+        <th scope="col">#</th>
+        <th scope="col">
+<!--        [1][2]    -->
+            <form id="search-form1" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" id="search-input1" placeholder="Search for mobile..." name="query1">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <div id="search-results1"></div>
+            </form>
+        </th>
+        <th scope="col">
+<!--            [1][3]-->
+            <form id="search-form2" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" id="search-input2" placeholder="Search for mobile..." name="query2">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <div id="search-results2"></div>
+            </form>
+        </th>
+        <!--      <th scope="col">Handle</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    </tr>
+    <tr>
+        <th>Product Image</th>
+        <td>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+                id="img1" alt=" ">
+        </td>
+        <td>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png"
+                id="img2" alt=" ">
+        </td>
+    </tr>
+    <tr>
+        <th>Product Price</th>
+        <td id="price1">N/A</td>
+        <td id="price2">N/A</td>
+    </tr>
+    <tr>
+        <th>Product Description</th>
+        <td id="desc1">{{ product1.name }}</td>
+        <td id="desc2">{{ product2.name }}</td>
+    </tr>
+    <tr>
+        <th>Product Brand</th>
+        <td id="brand1">N/A</td>
+        <td id="brand2">N/A</td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="{% static 'scripts.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+{% endblock content %}
